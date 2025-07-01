@@ -5,13 +5,14 @@
 ---
 
 ## Gallery
-<img width="830" alt="Matrix Green" src="https://github.com/user-attachments/assets/3003c382-85f6-41f6-9c1e-7f518c86fa11" />
-<img width="832" alt="Red Alert" src="https://github.com/user-attachments/assets/cd2ea406-49eb-4033-9df8-5e34411284dc" />
-<img width="828" alt="Neon Pink" src="https://github.com/user-attachments/assets/063eadc3-08ab-4e0a-af5d-f2357bf0d5ee" />
-<img width="832" alt="DOS" src="https://github.com/user-attachments/assets/7182f55a-167a-4491-bea6-dbecf2ae6d1b" />
-
 
 The interface features a dynamic, retro-terminal aesthetic with multiple selectable themes.
+
+| Matrix Green | Neon Pink |
+| :---: | :---: |
+| ![Matrix Green](https://github.com/user-attachments/assets/3003c382-85f6-41f6-9c1e-7f518c86fa11) | ![Neon Pink](https://github.com/user-attachments/assets/063eadc3-08ab-4e0a-af5d-f2357bf0d5ee) |
+| **Red Alert** | **DOS** |
+| ![Red Alert](https://github.com/user-attachments/assets/cd2ea406-49eb-4033-9df8-5e34411284dc) | ![DOS](https://github.com/user-attachments/assets/7182f55a-167a-4491-bea6-dbecf2ae6d1b) |
 
 ---
 
