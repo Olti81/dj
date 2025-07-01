@@ -1,0 +1,101 @@
+/* Default (Matrix Green) Theme */
+:root {
+  --bg-color: #000;
+  --text-color: #0F0;
+  --border-color: #0F0;
+  --glow-color: rgba(0, 255, 0, 0.8);
+  --darker-text-color: #0A0;
+  --error-bg-color: #8B0000;
+  --error-text-color: #F00;
+}
+
+/* Neon Pink Theme */
+body[data-theme='neon-pink'] {
+  --bg-color: #1a001a;
+  --text-color: #FF69B4;
+  --border-color: #FF69B4;
+  --glow-color: rgba(255, 105, 180, 0.8);
+  --darker-text-color: #C71585;
+  --error-bg-color: #8B0000;
+  --error-text-color: #F00;
+}
+
+/* Red Alert Theme */
+body[data-theme='red-alert'] {
+  --bg-color: #330000;
+  --text-color: #FF0000;
+  --border-color: #FF0000;
+  --glow-color: rgba(255, 0, 0, 0.8);
+  --darker-text-color: #B22222;
+  --error-bg-color: #8B0000;
+  --error-text-color: #F00;
+}
+
+/* Dracula Theme */
+body[data-theme='dracula'] {
+  --bg-color: #282a36;
+  --text-color: #f8f8f2;
+  --border-color: #bd93f9;
+  --glow-color: rgba(189, 147, 249, 0.5);
+  --darker-text-color: #6272a4;
+  --error-bg-color: #ff5555;
+  --error-text-color: #f8f8f2;
+}
+
+/* Commodore 64 Theme */
+body[data-theme='commodore-64'] {
+  --bg-color: #3939ff;
+  --text-color: #8888ff;
+  --border-color: #8888ff;
+  --glow-color: rgba(136, 136, 255, 0.8);
+  --darker-text-color: #5555aa;
+  --error-bg-color: #ff0000;
+  --error-text-color: #ffffff;
+}
+
+/* DOS Theme */
+body[data-theme='dos'] {
+  --bg-color: #0000AA;
+  --text-color: #FFFFFF;
+  --border-color: #FFFFFF;
+  --glow-color: rgba(255, 255, 255, 0.5);
+  --darker-text-color: #AAAAAA;
+  --error-bg-color: #FF0000;
+  --error-text-color: #FFFFFF;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'monospace', 'Courier New', Courier, monospace;
+  text-shadow: 0 0 8px var(--glow-color);
+}
+body {
+  overflow: hidden;
+}
+body.dragging {
+  cursor: grabbing;
+}
+body.dragging * {
+  user-select: none;
+  pointer-events: none;
+}
+.theme-selector {
+  position: absolute;
+  top: 1vmin;
+  right: 1vmin;
+  z-index: 10;
+}
+.theme-selector select {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  padding: 0.4vmin;
+  font-size: 1.5vmin;
+  font-family: inherit;
+  box-sizing: border-box;
+  text-shadow: 0 0 5px var(--glow-color);
+}

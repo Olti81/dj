@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/index.css">
+    <script type="importmap">
+      {
+        "imports": {
+          "lit/": "https://esm.sh/lit@^3.3.0/",
+          "lit": "https://esm.sh/lit@^3.3.0",
+          "@google/genai": "https://esm.sh/@google/genai@^1.0.0"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="theme-selector">
+      <select id="theme-select">
+        <option value="matrix-green">Matrix Green</option>
+        <option value="neon-pink">Neon Pink</option>
+        <option value="red-alert">Red Alert</option>
+        <option value="dracula">Dracula</option>
+        <option value="commodore-64">Commodore 64</option>
+        <option value="dos">DOS</option>
+      </select>
+    </div>
+    <script type="module" src="/index.tsx"></script>
+    <script>
+      const themeSelect = document.getElementById('theme-select');
+      const body = document.body;
+
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        body.dataset.theme = savedTheme;
+        themeSelect.value = savedTheme;
+      }
+
+      themeSelect.addEventListener('change', () => {
+        const selectedTheme = themeSelect.value;
+        body.dataset.theme = selectedTheme;
+        localStorage.setItem('theme', selectedTheme);
+      });
+    </script>
+  </body>
+</html>
