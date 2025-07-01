@@ -8,11 +8,11 @@
 
 The interface features a dynamic, retro-terminal aesthetic with multiple selectable themes.
 
-| Matrix Green | Neon Pink |
-| :---: | :---: |
-| ![Matrix Green](https://github.com/user-attachments/assets/3003c382-85f6-41f6-9c1e-7f518c86fa11) | ![Neon Pink](https://github.com/user-attachments/assets/063eadc3-08ab-4e0a-af5d-f2357bf0d5ee) |
+| Matrix Green                                                                                                  | Neon Pink                                                                                                   |
+| :------------------------------------------------------------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------- |
+| ![Matrix Green Theme](https://github.com/user-attachments/assets/3003c382-85f6-41f6-9c1e-7f518c86fa11) | ![Neon Pink Theme](https://github.com/user-attachments/assets/063eadc3-08ab-4e0a-af5d-f2357bf0d5ee) |
 | **Red Alert** | **DOS** |
-| ![Red Alert](https://github.com/user-attachments/assets/cd2ea406-49eb-4033-9df8-5e34411284dc) | ![DOS](https://github.com/user-attachments/assets/7182f55a-167a-4491-bea6-dbecf2ae6d1b) |
+| ![Red Alert Theme](https://github.com/user-attachments/assets/cd2ea406-49eb-4033-9df8-5e34411284dc)  | ![DOS Theme](https://github.com/user-attachments/assets/7182f55a-167a-4491-bea6-dbecf2ae6d1b)       |
 
 ---
 
@@ -44,10 +44,13 @@ To run this project locally, follow these steps:
 ### 1. Prerequisites
 
 * Node.js and npm (or yarn) installed.
-* A Google Generative AI API key.
+* A Google Generative AI API key needs to be present in a .env file in the root webapp directory.
+* (Recommended) Windows 10/11 with WSL2 (Windows Subsystem for Linux) installed.
 
 ### 2. Clone the Repository
 
+Clone the project to your local machine.
+
 ```bash
-git clone <your-repository-url>
-cd <repository-directory>
+git clone [https://github.com/Olti81/dj.git](https://github.com/Olti81/dj.git)
+cd prompt-dj
