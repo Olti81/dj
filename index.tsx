@@ -1874,6 +1874,10 @@ class PromptDj extends LitElement {
 
   @state() private selectedTheme: string = 'matrix-green';
 
+  @state() private timerStartTime: number = 0;
+  @state() private timerIntervalId: number | undefined;
+  @state() private elapsedTime: number = 0;
+
   @query('play-pause-button') private playPauseButton!: PlayPauseButton;
   @query('toast-message') private toastMessage!: ToastMessage;
   @query('settings-controller') private settingsController!: SettingsController;
@@ -1897,6 +1901,13 @@ class PromptDj extends LitElement {
   override async firstUpdated() {
     await this.connectToSession();
     this.setSessionPrompts();
+  }
+
+  private formatTime(seconds: number): string {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    const pad = (num: number) => num.toString().padStart(2, '0');
+    return `${pad(minutes)}:${pad(remainingSeconds)}`;
   }
 
   private async connectToSession() {
@@ -1943,6 +1954,14 @@ class PromptDj extends LitElement {
                 this.audioContext.currentTime + this.bufferTime;
               setTimeout(() => {
                 this.playbackState = 'playing';
+                // Start timer when playback actually begins
+                if (!this.timerIntervalId) {
+                  this.timerStartTime = this.audioContext.currentTime;
+                  this.timerIntervalId = setInterval(() => {
+                    this.elapsedTime = Math.floor(this.audioContext.currentTime - this.timerStartTime);
+                    this.requestUpdate();
+                  }, 1000);
+                }
               }, this.bufferTime * 1000);
             }
 
@@ -1950,6 +1969,12 @@ class PromptDj extends LitElement {
               console.log('under run');
               this.playbackState = 'loading';
               this.nextStartTime = 0;
+              // Stop timer on underrun
+              if (this.timerIntervalId) {
+                clearInterval(this.timerIntervalId);
+                this.timerIntervalId = undefined;
+                this.elapsedTime = 0;
+              }
               return;
             }
             source.start(this.nextStartTime);
@@ -2115,6 +2140,11 @@ class PromptDj extends LitElement {
     this.nextStartTime = 0;
     this.outputNode = this.audioContext.createGain();
     this.outputNode.connect(this.audioContext.destination);
+    // Stop timer on pause
+    if (this.timerIntervalId) {
+      clearInterval(this.timerIntervalId);
+      this.timerIntervalId = undefined;
+    }
   }
 
   private loadAudio() {
@@ -2138,6 +2168,12 @@ class PromptDj extends LitElement {
       this.audioContext.currentTime + 0.1,
     );
     this.nextStartTime = 0;
+    // Stop and reset timer on stop
+    if (this.timerIntervalId) {
+      clearInterval(this.timerIntervalId);
+      this.timerIntervalId = undefined;
+      this.elapsedTime = 0;
+    }
   }
 
   private async handleAddPrompt() {
@@ -2312,9 +2348,18 @@ class PromptDj extends LitElement {
       const a = document.createElement('a');
       a.style.display = 'none';
       a.href = url;
-      a.download = `prompt-dj-${new Date()
-        .toISOString()
-        .replace(/[:.]/g, '-')}.wav`;
+      const promptTexts = Array.from(this.prompts.values())
+        .map(p => p.text.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '-').substring(0, 30))
+        .filter(Boolean);
+
+      const date = new Date();
+      const timestamp = `${date.getFullYear()}${(date.getMonth() + 1).toString().padStart(2, '0')}${date.getDate().toString().padStart(2, '0')}_${date.getHours().toString().padStart(2, '0')}${date.getMinutes().toString().padStart(2, '0')}${date.getSeconds().toString().padStart(2, '0')}`;
+
+      const filename = promptTexts.length > 0
+        ? `${promptTexts.join('_')}_${timestamp}.wav`
+        : `generated_audio_${timestamp}.wav`;
+
+      a.download = filename;
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
@@ -2344,6 +2389,14 @@ class PromptDj extends LitElement {
       musicGenerationConfig: {},
     });
     this.recordedChunks = [];
+
+    // Reset timer on reset
+    if (this.timerIntervalId) {
+      clearInterval(this.timerIntervalId);
+      this.timerIntervalId = undefined;
+    }
+    this.timerStartTime = 0;
+    this.elapsedTime = 0;
 
     // Re-create and re-connect analyser and outputNode
     this.outputNode = this.audioContext.createGain();
@@ -2419,6 +2472,7 @@ class PromptDj extends LitElement {
               (this.outputNode.gain.value = Number((e.target as HTMLInputElement).value))}
           />
         </div>
+        <div class="timer-display">${this.formatTime(this.elapsedTime)}</div>
       </div>
       <toast-message></toast-message>`;
   }

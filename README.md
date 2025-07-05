@@ -24,7 +24,8 @@ The interface features a dynamic, retro-terminal aesthetic with multiple selecta
 * **Parameter Tuning**: Fine-tune the AI's output with core settings (Temperature, Guidance, Top-K) and advanced parameters (BPM, Scale, Instrument Muting).
 * **Preset Management**: Save, load, and delete entire sets of prompts as named presets, storing them in the browser's local storage.
 * **Theming**: Customize the look and feel of the interface with multiple built-in color themes.
-* **Audio Download**: Record the live-generated audio and download it as a `.wav` file.
+* **Live Playback Timer**: A real-time timer that tracks the duration of the music stream, resetting with playback controls.
+* **Audio Download**: Record the live-generated audio and download it as a `.wav` file with a descriptive filename based on active prompts.
 * **Responsive UI**: The layout is designed to be usable across different screen sizes.
 
 ---

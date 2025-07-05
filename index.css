@@ -99,3 +99,10 @@ body.dragging * {
   box-sizing: border-box;
   text-shadow: 0 0 5px var(--glow-color);
 }
+
+.timer-display {
+  font-size: 2vmin;
+  color: var(--text-color);
+  text-shadow: 0 0 8px var(--glow-color);
+  margin-left: 2vmin;
+}
