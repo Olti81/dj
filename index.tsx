@@ -177,6 +177,11 @@ const PROMPT_TEXT_PRESETS = [
   'Uplifting',
 ];
 
+const GENRES = ['Classical', 'Rock', 'Jazz', 'Pop', 'Electronic', 'Hip Hop', 'Folk', 'Blues'];
+const MOODS = ['Happy', 'Sad', 'Energetic', 'Relaxing', 'Romantic', 'Mysterious', 'Epic', 'Peaceful'];
+const INSTRUMENTS = ['Piano', 'Guitar', 'Violin', 'Drums', 'Bass', 'Synth', 'Flute', 'Saxophone'];
+const TEMPOS = ['Slow', 'Medium', 'Fast', '80 bpm', '120 bpm', '160 bpm'];
+
 const COLORS = [
   '#9900ff',
   '#5200ff',
@@ -647,6 +652,17 @@ export class RandomizeButton extends IconButton {
 
   override renderIcon() {
     return this.renderRandomizeIcon();
+  }
+}
+
+@customElement('generate-prompt-button')
+export class GeneratePromptButton extends IconButton {
+  private renderGenerateIcon() {
+    return svg`<text x="70" y="54" font-size="50" text-anchor="middle" dominant-baseline="middle" fill="var(--text-color)">✨</text>`;
+  }
+
+  override renderIcon() {
+    return this.renderGenerateIcon();
   }
 }
 
@@ -1898,6 +1914,17 @@ class PromptDj extends LitElement {
     }
   }
 
+  private addPrompt(promptText: string = '') {
+    const promptId = String(this.nextPromptId++);
+    const usedColors = [...this.prompts.values()].map((p) => p.color);
+    const color = getUnusedRandomColor(usedColors);
+    const text = promptText || PROMPT_TEXT_PRESETS[Math.floor(Math.random() * PROMPT_TEXT_PRESETS.length)];
+
+    this.prompts.set(promptId, {promptId, text, weight: 0.5, color});
+    this.setSessionPrompts();
+    this.requestUpdate();
+  }
+
   override async firstUpdated() {
     await this.connectToSession();
     this.setSessionPrompts();
@@ -1908,6 +1935,23 @@ class PromptDj extends LitElement {
     const remainingSeconds = Math.floor(seconds % 60);
     const pad = (num: number) => num.toString().padStart(2, '0');
     return `${pad(minutes)}:${pad(remainingSeconds)}`;
+  }
+
+  private randomizePrompts() {
+    for (const prompt of this.prompts.values()) {
+      prompt.text =
+        PROMPT_TEXT_PRESETS[Math.floor(Math.random() * PROMPT_TEXT_PRESETS.length)];
+    }
+    this.setSessionPrompts();
+    this.requestUpdate();
+  }
+
+  private generatePrompt() {
+    const getRandomElement = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)];
+
+    const prompt = `${getRandomElement(GENRES)}, ${getRandomElement(MOODS)}, ${getRandomElement(INSTRUMENTS)}, ${getRandomElement(TEMPOS)}`;
+
+    this.addPrompt(prompt);
   }
 
   private async connectToSession() {
@@ -2025,6 +2069,12 @@ class PromptDj extends LitElement {
     this.dispatchEvent(
       new CustomEvent('prompts-changed', {detail: this.prompts}),
     );
+  }
+
+  private removePrompt(promptId: string) {
+    this.prompts.delete(promptId);
+    this.setSessionPrompts();
+    this.requestUpdate();
   }
 
   private handlePromptChanged(e: CustomEvent<Prompt>) {
@@ -2430,11 +2480,10 @@ class PromptDj extends LitElement {
             ${this.renderPrompts()}
           </div>
           <div class="add-prompt-button-container">
-            <randomize-button @click=${this.randomizePrompts}></randomize-button>
-            <add-prompt-button
-              @click=${this.handleAddPrompt}
-              ?disabled=${this.prompts.size >= 16}></add-prompt-button>
-          </div>
+        <add-prompt-button @click=${this.addPrompt}></add-prompt-button>
+        <randomize-button @click=${this.randomizePrompts}></randomize-button>
+        <generate-prompt-button @click=${this.generatePrompt}></generate-prompt-button>
+      </div>
         </div>
         <div id="settings-container">
           <settings-controller
