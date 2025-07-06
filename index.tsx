@@ -177,10 +177,378 @@ const PROMPT_TEXT_PRESETS = [
   'Uplifting',
 ];
 
-const GENRES = ['Classical', 'Rock', 'Jazz', 'Pop', 'Electronic', 'Hip Hop', 'Folk', 'Blues'];
-const MOODS = ['Happy', 'Sad', 'Energetic', 'Relaxing', 'Romantic', 'Mysterious', 'Epic', 'Peaceful'];
-const INSTRUMENTS = ['Piano', 'Guitar', 'Violin', 'Drums', 'Bass', 'Synth', 'Flute', 'Saxophone'];
-const TEMPOS = ['Slow', 'Medium', 'Fast', '80 bpm', '120 bpm', '160 bpm'];
+const GENRES = [
+  'Acoustic',
+  'Afrobeat',
+  'Alternative Rock',
+  'Ambient',
+  'Avant-Garde',
+  'Blues',
+  'Bollywood',
+  'Bossa Nova',
+  'Celtic',
+  'Chamber Music',
+  'Chanson',
+  "Children's Music",
+  'Chillwave',
+  'Chiptune',
+  'Classical',
+  'Country',
+  'Dance-Pop',
+  'Dancehall',
+  'Death Metal',
+  'Disco',
+  'Downtempo',
+  'Dream Pop',
+  'Drone',
+  'Dub',
+  'Dubstep',
+  'Electro',
+  'Electronic',
+  'Electronic Dance Music (EDM)',
+  'Emo',
+  'Experimental',
+  'Folk',
+  'Footwork',
+  'Funk',
+  'Garage Rock',
+  'Gospel',
+  'Gothic Rock',
+  'Grime',
+  'Grunge',
+  'Hard Rock',
+  'Hardcore',
+  'Heavy Metal',
+  'Hip Hop',
+  'House',
+  'Indie Pop',
+  'Indie Rock',
+  'Industrial',
+  'Instrumental',
+  'Jazz',
+  'J-Pop',
+  'K-Pop',
+  'Latin',
+  'Lo-fi Hip Hop',
+  'Mambo',
+  'Mariachi',
+  'Metal',
+  'Minimal Techno',
+  'New Age',
+  'New Wave',
+  'Noise Rock',
+  'Opera',
+  'Orchestral',
+  'Pop',
+  'Post-Punk',
+  'Post-Rock',
+  'Progressive Rock',
+  'Psychedelic Rock',
+  'Punk',
+  'R&B',
+  'Ragtime',
+  'Reggae',
+  'Reggaeton',
+  'Rock',
+  'Salsa',
+  'Ska',
+  'Soul',
+  'Soundtrack',
+  'Southern Rock',
+  'Spoken Word',
+  'Surf Rock',
+  'Synth-Pop',
+  'Techno',
+  'Trance',
+  'Trap',
+  'Trip Hop',
+  'Tropical',
+  'Vaporwave',
+  'World Music',
+  'Zydeco',
+];
+const MOODS = [
+  'Aggressive',
+  'Anxious',
+  'Atmospheric',
+  'Beautiful',
+  'Bouncy',
+  'Calm',
+  'Carefree',
+  'Chaotic',
+  'Chill',
+  'Cinematic',
+  'Contemplative',
+  'Cool',
+  'Cosmic',
+  'Creepy',
+  'Cybernetic',
+  'Dark',
+  'Dreamy',
+  'Driving',
+  'Energetic',
+  'Epic',
+  'Euphoric',
+  'Exciting',
+  'Funky',
+  'Futuristic',
+  'Gentle',
+  'Glamorous',
+  'Glorious',
+  'Groovy',
+  'Happy',
+  'Haunting',
+  'Hopeful',
+  'Hypnotic',
+  'Inspirational',
+  'Intense',
+  'Jazzy',
+  'Joyful',
+  'Lively',
+  'Lonely',
+  'Love',
+  'Lush',
+  'Melancholic',
+  'Mysterious',
+  'Nostalgic',
+  'Peaceful',
+  'Playful',
+  'Powerful',
+  'Quirky',
+  'Relaxing',
+  'Romantic',
+  'Sad',
+  'Serene',
+  'Smooth',
+  'Spiritual',
+  'Suspenseful',
+  'Sweet',
+  'Tense',
+  'Thoughtful',
+  'Tranquil',
+  'Uplifting',
+  'Vibrant',
+  'Whimsical',
+  'Wobbly',
+];
+const INSTRUMENTS = [
+  'Accordion',
+  'Bagpipes',
+  'Banjo',
+  'Bass Guitar',
+  'Cello',
+  'Clarinet',
+  'Drums',
+  'Flute',
+  'French Horn',
+  'Glockenspiel',
+  'Guitar',
+  'Harmonica',
+  'Harp',
+  'Harpsichord',
+  'Keyboard',
+  'Mandolin',
+  'Oboe',
+  'Organ',
+  'Percussion',
+  'Piano',
+  'Piccolo',
+  'Saxophone',
+  'Sitar',
+  'Steel Drums',
+  'Synthesizer',
+  'Tabla',
+  'Theremin',
+  'Trombone',
+  'Trumpet',
+  'Tuba',
+  'Ukulele',
+  'Vibraphone',
+  'Viola',
+  'Violin',
+  'Xylophone',
+  'Zither',
+  'Acoustic Guitar',
+  'Electric Guitar',
+  'Upright Bass',
+  'Djembe',
+  'Congas',
+  'Bongos',
+  'Maracas',
+  'Tambourine',
+  'Triangle',
+  'Cymbals',
+  'Snare Drum',
+  'Kick Drum',
+  'Hi-Hat',
+  'Timpani',
+  'Gong',
+  'Didgeridoo',
+  'Pan Flute',
+  'Ocarina',
+  'Baglama',
+  'Balalaika',
+  'Bandoneon',
+  'Bouzouki',
+  'Cimbalom',
+  'Dulcimer',
+  'Erhu',
+  'Fiddle',
+  'Guzheng',
+  'Koto',
+  'Lute',
+  'Lyre',
+  'Oud',
+  'Sitar',
+  'Surbahar',
+  'Tambura',
+  'Udu',
+  'Vina',
+  'Zurna',
+];
+const TEMPOS = [
+  'Adagio',
+  'Allegro',
+  'Andante',
+  'Largo',
+  'Moderato',
+  'Presto',
+  'Vivace',
+  'Grave',
+  'Lento',
+  'Andantino',
+  'Allegretto',
+  'Prestissimo',
+  'Vivacissimo',
+  'Larghissimo',
+  'Lentissimo',
+  'Slow',
+  'Medium',
+  'Fast',
+  'Very Slow',
+  'Very Fast',
+  'Extremely Slow',
+  'Extremely Fast',
+  '40 bpm',
+  '50 bpm',
+  '60 bpm',
+  '70 bpm',
+  '80 bpm',
+  '90 bpm',
+  '100 bpm',
+  '110 bpm',
+  '120 bpm',
+  '130 bpm',
+  '140 bpm',
+  '150 bpm',
+  '160 bpm',
+  '170 bpm',
+  '180 bpm',
+  '190 bpm',
+  '200 bpm',
+  '210 bpm',
+  '220 bpm',
+  '230 bpm',
+  '240 bpm',
+  '250 bpm',
+  '260 bpm',
+  '270 bpm',
+  '280 bpm',
+  '290 bpm',
+  '300 bpm',
+  'Driving',
+  'Relaxed',
+  'Urgent',
+  'Steady',
+  'Fluid',
+  'Staccato',
+  'Legato',
+  'Swung',
+  'Straight',
+  'Syncopated',
+  'Polyrhythmic',
+  'Rubato',
+  'Accelerando',
+  'Ritardando',
+  'A Tempo',
+];
+const STYLES = [
+  'Acoustic',
+  'Ambient',
+  'Analog',
+  'Arpeggiated',
+  'Atmospheric',
+  'Big Band',
+  'Bluesy',
+  'Boom Bap',
+  'Breakbeat',
+  'Chamber',
+  'Cinematic',
+  'Classical',
+  'Club',
+  'Country',
+  'Crunchy',
+  'Dance',
+  'Darkwave',
+  'Digital',
+  'Distorted',
+  'Dreamy',
+  'Driving',
+  'Dubby',
+  'Electro',
+  'Ethereal',
+  'Experimental',
+  'Filtered',
+  'Funky',
+  'Fuzzy',
+  'Gangsta',
+  'Glitch',
+  'Gospel',
+  'Gritty',
+  'Groovy',
+  'Hard',
+  'Heavy',
+  'Hiphop',
+  'Industrial',
+  'Jazzy',
+  'Latin',
+  'Lo-fi',
+  'Loud',
+  'Lush',
+  'Melodic',
+  'Minimal',
+  'Modern',
+  'Neo-Soul',
+  'New Age',
+  'Orchestral',
+  'Percussive',
+  'Pop',
+  'Psychedelic',
+  'Punk',
+  'Raw',
+  'Reggae',
+  'Retro',
+  'Rhythmic',
+  'RnB',
+  'Rock',
+  'Smooth',
+  'Soft',
+  'Soulful',
+  'Spacious',
+  'Staccato',
+  'Swung',
+  'Symphonic',
+  'Synthwave',
+  'Techno',
+  'Trap',
+  'Tribal',
+  'Trancey',
+  'Underground',
+  'Vintage',
+  'Warm',
+  'Wobbly',
+  'World',
+];
 
 const COLORS = [
   '#9900ff',
@@ -1829,6 +2197,46 @@ class PromptDj extends LitElement {
       margin-left: auto;   /* Add this line */
       margin-right: auto;  /* Add this line */
     }
+    .prompt-selection-controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1vmin;
+      margin-bottom: 1vmin;
+    }
+    .prompt-selection-controls select {
+      padding: 0.5vmin 1vmin;
+      border-radius: 3px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-size: 1.44vmin;
+      cursor: pointer;
+      text-shadow: 0 0 5px var(--glow-color);
+    }
+    .prompt-selection-controls select:focus {
+      outline: none;
+      box-shadow: 0 0 8px var(--glow-color);
+    }
+    .prompt-selection-controls select option {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+    .prompt-selection-controls .reset-button {
+      padding: 0.5vmin 1vmin;
+      border-radius: 3px;
+      border: 1px solid var(--border-color);
+      background-color: var(--text-color);
+      color: var(--bg-color);
+      font-size: 1.44vmin;
+      cursor: pointer;
+      text-shadow: 0 0 5px var(--glow-color);
+      transition: background-color 0.2s, box-shadow 0.2s;
+    }
+    .prompt-selection-controls .reset-button:hover {
+      background-color: var(--darker-text-color);
+      box-shadow: 0 0 8px var(--glow-color);
+    }
     .playback-container {
       display: flex;
       justify-content: center;
@@ -1894,6 +2302,12 @@ class PromptDj extends LitElement {
   @state() private timerIntervalId: number | undefined;
   @state() private elapsedTime: number = 0;
 
+  @state() private selectedMood: string = '';
+  @state() private selectedStyle: string = '';
+  @state() private selectedGenre: string = '';
+  @state() private selectedTempo: string = '';
+  @state() private selectedInstrument: string = '';
+
   @query('play-pause-button') private playPauseButton!: PlayPauseButton;
   @query('toast-message') private toastMessage!: ToastMessage;
   @query('settings-controller') private settingsController!: SettingsController;
@@ -1949,9 +2363,53 @@ class PromptDj extends LitElement {
   private generatePrompt() {
     const getRandomElement = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)];
 
-    const prompt = `${getRandomElement(GENRES)}, ${getRandomElement(MOODS)}, ${getRandomElement(INSTRUMENTS)}, ${getRandomElement(TEMPOS)}`;
+    const mood = this.selectedMood || getRandomElement(MOODS);
+    const style = this.selectedStyle || getRandomElement(STYLES);
+    const genre = this.selectedGenre || getRandomElement(GENRES);
+    const tempo = this.selectedTempo || getRandomElement(TEMPOS);
+    const instrument = this.selectedInstrument || getRandomElement(INSTRUMENTS);
+
+    const promptParts = [];
+    if (mood) promptParts.push(mood);
+    if (style) promptParts.push(style);
+    if (genre) promptParts.push(genre);
+    if (tempo) promptParts.push(tempo);
+    if (instrument) promptParts.push(instrument);
+
+    const prompt = promptParts.join(', ');
 
     this.addPrompt(prompt);
+  }
+
+  private resetSelections() {
+    this.selectedMood = '';
+    this.selectedStyle = '';
+    this.selectedGenre = '';
+    this.selectedTempo = '';
+    this.selectedInstrument = '';
+    this.requestUpdate();
+  }
+
+  private handleSelectionChange(event: Event) {
+    const target = event.target as HTMLSelectElement;
+    const value = target.value;
+    switch (target.id) {
+      case 'mood-select':
+        this.selectedMood = value;
+        break;
+      case 'style-select':
+        this.selectedStyle = value;
+        break;
+      case 'genre-select':
+        this.selectedGenre = value;
+        break;
+      case 'tempo-select':
+        this.selectedTempo = value;
+        break;
+      case 'instrument-select':
+        this.selectedInstrument = value;
+        break;
+    }
   }
 
   private async connectToSession() {
@@ -2499,6 +2957,55 @@ class PromptDj extends LitElement {
               this.analyser.smoothingTimeConstant = e.detail.visualizerSmoothing;
             }}></settings-controller>
         </div>
+      </div>
+      <div class="prompt-selection-controls">
+        <select
+          .value=${this.selectedMood}
+          @change=${(e: Event) =>
+            (this.selectedMood = (e.target as HTMLSelectElement).value)}>
+          <option value="">Select Mood</option>
+          ${MOODS.map(
+            (mood) => html`<option value=${mood}>${mood}</option>`,
+          )}
+        </select>
+        <select
+          .value=${this.selectedStyle}
+          @change=${(e: Event) =>
+            (this.selectedStyle = (e.target as HTMLSelectElement).value)}>
+          <option value="">Select Style</option>
+          ${STYLES.map(
+            (style) => html`<option value=${style}>${style}</option>`,
+          )}
+        </select>
+        <select
+          .value=${this.selectedGenre}
+          @change=${(e: Event) =>
+            (this.selectedGenre = (e.target as HTMLSelectElement).value)}>
+          <option value="">Select Genre</option>
+          ${GENRES.map(
+            (genre) => html`<option value=${genre}>${genre}</option>`,
+          )}
+        </select>
+        <select
+          .value=${this.selectedTempo}
+          @change=${(e: Event) =>
+            (this.selectedTempo = (e.target as HTMLSelectElement).value)}>
+          <option value="">Select Tempo</option>
+          ${TEMPOS.map(
+            (tempo) => html`<option value=${tempo}>${tempo}</option>`,
+          )}
+        </select>
+        <select
+          .value=${this.selectedInstrument}
+          @change=${(e: Event) =>
+            (this.selectedInstrument = (e.target as HTMLSelectElement).value)}>
+          <option value="">Select Instrument</option>
+          ${INSTRUMENTS.map(
+            (instrument) =>
+              html`<option value=${instrument}>${instrument}</option>`,
+          )}
+        </select>
+        <button class="reset-button" @click=${this.resetSelections}>Reset Selections</button>
       </div>
       <div class="playback-container">
         <play-pause-button
